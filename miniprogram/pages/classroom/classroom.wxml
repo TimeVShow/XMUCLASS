@@ -1,0 +1,7 @@
+<!--pages/classroom/classroom.wxml-->
+<Select prop-array='{{area}}' bind:myget='getDate'></Select>
+<view wx:for="{{time}}">
+<button class="btn1">{{item}}</button>
+</view>
+<view>{{date}}</view>
+<view>{{index}}</view>
