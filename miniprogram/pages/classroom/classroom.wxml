@@ -1,5 +1,15 @@
 <!--pages/classroom/classroom.wxml-->
 <Select prop-array='{{area}}' bind:myget='getDate'></Select>
-<view wx:for="{{time}}">
-<button class="btn1">{{item}}</button>
+<button class="btn1">"第1-2节"</button>
+<view class='room'>
+<block wx:for="{{ot}}" class="mes">
+<view class='btn2'>{{item}}</view>
+</block>
+</view>
+
+<button class="btn1">"第3-4节"</button>
+<view class="room">
+<block wx:for="{{tf}}" class="mes">
+<view class="btn2">{{item}}</view>
+</block>
 </view>

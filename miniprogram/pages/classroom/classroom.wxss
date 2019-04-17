@@ -3,11 +3,37 @@
   display: flex;
   height:70rpx;
   width:200rpx;
-  font-size:80%;
+  font-size:30rpx;
   background-color:aquamarine;
   color:white;
   text-align:center;
   flex-direction: row;
   justify-content: center;
   align-items: center; 
+  margin-top: 10rpx;
+}
+.btn2
+{
+  display: flex;
+  height:70rpx;
+  width:150rpx;
+  text-align: center;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  border-style: solid;
+  border-left-width: 4rpx;
+  border-right-width: 4rpx;
+  border-bottom-width: 4rpx;
+  border-top-width: 4rpx;
+  margin-top:10rpx;
+  margin-left: 30rpx;
+  border-radius: 20rpx;
+}
+.room
+{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
