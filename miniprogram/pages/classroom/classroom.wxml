@@ -3,5 +3,3 @@
 <view wx:for="{{time}}">
 <button class="btn1">{{item}}</button>
 </view>
-<view>{{date}}</view>
-<view>{{index}}</view>

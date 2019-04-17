@@ -8,11 +8,8 @@ Page({
   data: {
     area:[{"id":0,"text":"海韵教学楼","position":"haiyunjiaoxuelou"},{"id":1,"text":"学生公寓","position":"xueshenggongyu"}],
     time: ["第1-2节", "第3-4节", "第5-6节", "第7-8节", "第9-11节"],
-    "1_2":[],
-    "3_4":[],
-    "5_6":[],
-    "7_8":[],
-    "9_10":[]
+    whichweek:0,
+    start_time:"2019/2/16"
     },
   /**
    * 生命周期函数--监听页面加载
@@ -68,12 +65,16 @@ Page({
   onShareAppMessage: function () {
 
   },
+  //得到下拉列表的返回值，并开始进行处理
   getDate: function (e) {
     var a=e.detail["id"];
     var area=this.data.area[a]["position"];
     var day=this.today();
+    var date=new Date();
+    this.getweekString(date);
     this.work(area,day);
   },
+  //得到当前是星期几
   today:function()
   {
     var a = (new Date()).toString();
@@ -96,4 +97,16 @@ Page({
   {
     
   },
+  //得到当前的周次
+  getweekString:function(date1)
+  {
+    var Date1=new Date(date1);
+    var y=Date1.getFullYear();
+    var Date2=new Date(this.data.start_time);
+    var dayofWeek=Date2.getDay();
+    dayofWeek=dayofWeek==0?7:dayofWeek;
+    var num=(Date1-Date2)/1000/3600/24;
+    var whichWeek=Math.ceil((num+dayofWeek)/7);
+    this.setData({whichweek:whichWeek});
+  }
 })
