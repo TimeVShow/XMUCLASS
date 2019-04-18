@@ -72,14 +72,16 @@ Page({
   },
   //得到下拉列表的返回值，并开始进行处理
   getDate: function (e) {
+    var b=[];
+    this.setData({ot:b});
+    this.setData({tf:b});
     var a=e.detail["id"];
-    console.log(a);
     var area=this.data.area[a]["position"];
-    console.log(area);
     var day=this.today();
-    var date=new Date();    
+    console.log(day);
+    var date=new Date();   
     var week=this.getweekString(date);
-    this.work(week,area,day);
+    this.work(this.data.whichweek,area,day);
   },
   //得到当前是星期几
   today:function()
@@ -93,42 +95,41 @@ Page({
     const name=["ot","tf","fs","se","ne"];
     const cl=["1_2","3_4","5_6","7_8","9_11"];
     const db = wx.cloud.database({ env: 'classroom-messege-78b0bb' });
-    console.log(area);
     const position = db.collection(area);
-    console.log(position);
-    var b=[];
     var that=this;
     db.collection(area).where({_id:day}).get({
       success(res)
       {
-        console.log(res.data);
-        var len=res.data[0]["length"];
+        var len=res.data[0]["1_2"].length;
         var i=0;
         var k=0;
-        for(k;k<cl.length;k=k+1)
+        for(let k=0;k<len;k=k+1)
         {
+          var b = [];
+          console.log(k);
           var count=0;
           for(i=0;i<len;i=i+1)
           {
-            var fl=false;
-            if(res.data[0][cl[k]][i]["flag"])
+            var fl = res.data[0][cl[k]][i]["flag"];
+            for (let j = 0; j < res.data[0][cl[k]][i]["special"].length;j=j+1)
             {
-              for (let j = 0; j < res.data[0][cl[k]][i]["special"].length;j++)
+              if (week == res.data[0][cl[k]][i]["special"][j])
               {
-                if (week == res.data[0][cl[k]][i]["special"][j])
-                {
-                  fl=true;
-                  break;
-                }
-              }
-              if(!fl)
-              {
-                b[count]=res.data[0][cl[k]][i]["room"];
-                count = count + 1;
+                fl = !fl;
+                break;
               }
             }
+            if(fl)
+            {
+              b[count]=res.data[0][cl[k]][i]["room"];
+              count = count + 1;
+            }
           }
+          console.log(b);
+          if(count!=0)
           that.setData({[name[k]]:b});
+          else
+          that.setData({[name[k][0]]:"当前无可用自习教室"});
         }
       }
     });

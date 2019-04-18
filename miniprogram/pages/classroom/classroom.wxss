@@ -2,7 +2,7 @@
 {
   display: flex;
   height:70rpx;
-  width:200rpx;
+  width:210rpx;
   font-size:30rpx;
   background-color:aquamarine;
   color:white;

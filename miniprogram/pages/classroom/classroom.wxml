@@ -13,3 +13,23 @@
 <view class="btn2">{{item}}</view>
 </block>
 </view>
+
+<button class="btn1">"第5-6节"</button>
+<view class='room'>
+<block wx:for="{{fs}}" class="mes">
+<view class='btn2'>{{item}}</view>
+</block>
+</view>
+
+<button class="btn1">"第7-8节"</button>
+<view class='room'>
+<block wx:for="{{se}}" class="mes">
+<view class='btn2'>{{item}}</view>
+</block>
+</view>
+<button class="btn1">"第9-11节"</button>
+<view class='room'>
+<block wx:for="{{ne}}" class="mes">
+<view class='btn2'>{{item}}</view>
+</block>
+</view>
