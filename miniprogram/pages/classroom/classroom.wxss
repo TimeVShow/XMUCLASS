@@ -37,3 +37,8 @@
   flex-wrap: wrap;
   justify-content: space-around;
 }
+.head
+{
+  font-weight: 600;
+  text-align: center;
+}

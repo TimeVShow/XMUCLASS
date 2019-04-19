@@ -1,5 +1,9 @@
 <!--pages/classroom/classroom.wxml-->
+<view class="head">当前周次为:第{{whichweek}}周</view>
+<view style="color:red;font-size:30rpx">注*:自习室具体使用情况可能会有所变动请以现场情况为准</view>
+
 <Select prop-array='{{area}}' bind:myget='getDate'></Select>
+
 <button class="btn1">"第1-2节"</button>
 <view class='room'>
 <block wx:for="{{ot}}" class="mes">

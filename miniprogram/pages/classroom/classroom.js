@@ -20,6 +20,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var date = new Date();
+    var week = this.getweekString(date);
   },
 
   /**
@@ -97,6 +99,14 @@ Page({
     const db = wx.cloud.database({ env: 'classroom-messege-78b0bb' });
     const position = db.collection(area);
     var that=this;
+    var b=[];
+    for(let i=0;i<5;i++)
+    {
+      that.setData(
+        {
+            [name[i]]:b          
+        });      
+    }
     db.collection(area).where({_id:day}).get({
       success(res)
       {
