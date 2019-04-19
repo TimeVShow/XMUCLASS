@@ -16,6 +16,7 @@
 			"current": -1,
 			"list": []
 		},
+    "cloudfunctionRoot":"./functions/",
 		"conversation": {
 			"current": -1,
 			"list": []

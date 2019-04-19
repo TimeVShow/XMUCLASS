@@ -1,0 +1,413 @@
+{
+  "_id": "Thu",
+  "1_2": [
+    {
+      "room": 104,
+      "flag": false,
+      "special": [ 0 ]
+    },
+    {
+      "room": 105,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 201,
+      "flag": false,
+      "special": [ 2,4,6,8,10,12,14 ]
+    },
+    {
+      "room": 202,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 203,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 204,
+      "flag": false,
+      "special": [ 0 ]
+    },
+    {
+      "room": 205,
+      "flag": false,
+      "special": [ 0 ]
+    },
+    {
+      "room": 206,
+      "flag": false,
+      "special": [ 1,3,5,7,9,11,13,15 ]
+    },
+    {
+      "room": 301,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 302,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 303,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 305,
+      "flag": false,
+      "special": [ 0 ]
+    },
+    {
+      "room": 306,
+      "flag": false,
+      "special": [0 ]
+    },
+    {
+      "room": 401,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 405,
+      "flag": false,
+      "special": [ 15 ]
+    },
+    {
+      "room": 406,
+      "flag": true,
+      "special": [ 0 ]
+    }
+  ],
+  "3_4": [
+    {
+      "room": 104,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 105,
+      "flag": false,
+      "special": [ 0 ]
+    },
+    {
+      "room": 201,
+      "flag": false,
+      "special": [ 0 ]
+    },
+    {
+      "room": 202,
+      "flag": false,
+      "special": [ 0 ]
+    },
+    {
+      "room": 203,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 204,
+      "flag": false,
+      "special": [ 0 ]
+    },
+    {
+      "room": 205,
+      "flag": false,
+      "special": [ 0 ]
+    },
+    {
+      "room": 206,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 301,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 302,
+      "flag": true,
+      "special": [ 15 ]
+    },
+    {
+      "room": 303,
+      "flag": false,
+      "special": [ 0 ]
+    },
+    {
+      "room": 305,
+      "flag": false,
+      "special": [ 2, 4, 6, 8, 10, 12, 14 ]
+    },
+    {
+      "room": 306,
+      "flag": false,
+      "special": [ 1, 3, 5, 7, 9, 11, 13, 15 ]
+    },
+    {
+      "room": 401,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 405,
+      "flag": false,
+      "special": [ 13, 14, 15 ]
+    },
+    {
+      "room": 406,
+      "flag": false,
+      "special": [ 0 ]
+    }
+  ],
+  "5_6": [
+    {
+      "room": 104,
+      "flag": false,
+      "special": [ 0 ]
+    },
+    {
+      "room": 105,
+      "flag": false,
+      "special": [ 1, 2, 3, 4 ]
+    },
+    {
+      "room": 201,
+      "flag": false,
+      "special": [ 0 ]
+    },
+    {
+      "room": 202,
+      "flag": false,
+      "special": [ 0 ]
+    },
+    {
+      "room": 203,
+      "flag": false,
+      "special": [ 0 ]
+    },
+    {
+      "room": 204,
+      "flag": false,
+      "special": [ 0 ]
+    },
+    {
+      "room": 205,
+      "flag": false,
+      "special": [ 0 ]
+    },
+    {
+      "room": 206,
+      "flag": false,
+      "special": [ 0 ]
+    },
+    {
+      "room": 301,
+      "flag": false,
+      "special": [ 0 ]
+    },
+    {
+      "room": 302,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 303,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 305,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 306,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 401,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 405,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 406,
+      "flag": true,
+      "special": [ 0 ]
+    }
+  ],
+  "7_8": [
+    {
+      "room": 104,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 105,
+      "flag": false,
+      "special": [ 0 ]
+    },
+    {
+      "room": 201,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 202,
+      "flag": false,
+      "special": [ 0 ]
+    },
+    {
+      "room": 203,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 204,
+      "flag": false,
+      "special": [ 0 ]
+    },
+    {
+      "room": 205,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 206,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 301,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 302,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 303,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 305,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 306,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 401,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 405,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 406,
+      "flag": true,
+      "special": [ 0 ]
+    }
+  ],
+  "9_11": [
+    {
+      "room": 104,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 105,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 201,
+      "flag": false,
+      "special": [ 0 ]
+    },
+    {
+      "room": 202,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 203,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 204,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 205,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 206,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 301,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 302,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 303,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 305,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 306,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 401,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 405,
+      "flag": true,
+      "special": [ 0 ]
+    },
+    {
+      "room": 406,
+      "flag": true,
+      "special": [ 0 ]
+    }
+  ]
+}
