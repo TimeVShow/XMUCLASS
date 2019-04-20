@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/talk/talk",
     "pages/classroom/classroom",
+    "pages/user/user",
     "pages/index/index",
-    "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
     "pages/databaseGuide/databaseGuide",
     "pages/addFunction/addFunction",
@@ -15,5 +16,29 @@
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "云开发 QuickStart",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar":
+  {
+    "color":"#a9b7b7",
+    "borderStyle":"white",
+    "selectedColor":"#11cd6e",
+    "list":[{
+        "selectedIconPath": "images/map.png",
+        "iconPath": "images/map.png",
+        "pagePath": "pages/classroom/classroom",
+        "text": "可用自习教室"
+      },
+      {
+        "selectedIconPath": "images/write.png",
+        "iconPath": "images/write.png",
+        "pagePath": "pages/talk/talk",
+        "text": "寻物"
+      },
+      {
+        "selectedIconPath": "images/user-line.png",
+        "iconPath": "images/user-line.png",
+        "pagePath": "pages/user/user",
+        "text": "个人信息"
+      }]
   }
 }

@@ -1,0 +1,28 @@
+/* pages/talk/talk.wxss */
+.box
+{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap:nowrap;
+  height:80rpx;
+}
+.title
+{
+  width: 90%;
+  text-align: center;
+  border: solid;
+}
+.btn2
+{
+  width:100rpx;
+
+}
+.add_icon
+{
+  position: fixed;
+  width: 84rpx;
+  height:84rpx;
+  bottom:30px;
+  right:20px;
+}

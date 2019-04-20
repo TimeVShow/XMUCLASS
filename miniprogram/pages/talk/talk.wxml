@@ -1,0 +1,5 @@
+<!--pages/talk/talk.wxml-->
+<view bindtap="">
+  <image class="add_icon" src="images/plus.png">
+  </image>
+</view>
