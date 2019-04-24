@@ -1,9 +1,16 @@
-<view class="userinfo" wx:if="{{caniuse}}">
-  <view class="userinfo-avatar">
-    <open-data type="userAvatarUrl"></open-data>  
-  </view>
-  <open-data type="userNickName" style="color:black"></open-data>
+<view class="userinfo ">
+  <block class="avatar-box">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
+    <view style="color:red">{{userInfo.nickName}}</view>
+  </block>
+  <button wx:if="{{canIUse&&userInfo==null}}" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo" bindtap="bindViewTap">授权登录</button>
 </view>
-<view wx:else>
-  <button class="weui-btn" type="default" bindtap="openConfirm">授权获取头像及昵称</button>
+<view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_access">
+        <view class="weui-cell__bd">个人信息</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access" style="font-size: 0">
+            <view style="display: inline-block;vertical-align:middle; font-size: 17px;" bindtap="go">完善个人信息</view>
+            <view class="weui-badge weui-badge_dot" style="margin-left: 5px;margin-right: 5px;"></view>
+        </view>
+    </view>
 </view>

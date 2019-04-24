@@ -142,7 +142,7 @@ Page({
         }
       }
     });
-    setTimeout(function () { that.setData({ is_select: true }) }, 500);
+    setTimeout(function () { that.setData({ is_select: true }) }, 2000);
   },
   show_messege:function()
   {

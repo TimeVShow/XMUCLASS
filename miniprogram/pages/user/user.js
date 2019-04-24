@@ -5,30 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    caniuse:false,
+    userInfo:null,
+    canIUse:wx.canIUse('button.open-type.getUserInfo')
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var flag = false;
-    wx.getStorage({
-
-      key: 'caniuse',
-
-      success: function (res) {
-
-        // 异步接口在success回调才能拿到返回值
-        console.log(flag);
-        flag = res.data;
-        console.log(flag);
-      },
-      fail: function () {
-        console.log('读取key1发生错误')
-      }
-    })
-    this.setData({caniuse:flag});
 },
 
   /**
@@ -79,35 +63,19 @@ Page({
   onShareAppMessage: function () {
 
   },
-  openConfirm:function()
+  onGotUserInfo:function(e)
   {
-    let that=this;
-    wx.showModal({
-      title: '获取授权',
-      content: '是否同意小程序获取你的信息',
-      confirmText: "同意",
-      cancelText: "拒绝",
-      success: function (res) {
-        if (res.confirm) {
-          that.setData({caniuse:true});
-          try {
-
-            // 同步接口立即写入
-
-            wx.setStorageSync('caniuse', that.data.caniuse);
-
-            console.log('写入caniuse成功');
-
-          } catch (e) {
-
-            console.log('写入value2发生错误');
-
-          };
-        } else {
-          console.log('用户点击辅助操作')
-        }
-      }
+    console.log(this.data.userInfo);
+    console.log(e.detail.userInfo);
+    this.setData({
+      userInfo:e.detail.userInfo
     });
+    console.log(this.data.userInfo);
+  },
+  go:function()
+  {
+    wx.redirectTo({
+      url: '../fillmessege/fillmessege',
+    })
   }
-
 })

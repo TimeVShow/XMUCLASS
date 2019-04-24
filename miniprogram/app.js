@@ -7,6 +7,7 @@ App({
     } else {
       wx.cloud.init({
         traceUser: true,
+        env:'classroom-messege-78b0bb'
       })
     }
 
