@@ -1,3 +1,4 @@
+const app=getApp();
 Page({
   data: {
     study_year: ['2014级', '2015级', '2016级', '2017级'],
@@ -80,7 +81,7 @@ Page({
   {
     const db = wx.cloud.database({ env: 'classroom-messege-78b0bb' });
     const messege=db.collection('user');
-    messege.doc(this.data.appid).update({
+    messege.doc(app.globalData.appid).update({
       data:
       {
         name: this.data.name,
@@ -96,7 +97,7 @@ Page({
     messege.add({
       data:
       {
-        _id: this.data.appid,
+        _id: app.globalData.appid,
         name:this.data.name,
         xueyuan:this.data.xueyuan,
         studyyear:this.data.studyyear,
@@ -105,23 +106,9 @@ Page({
       success(res) {
         console.log(res);
       }
+    });
+    wx.redirectTo({
+      url: '../uploadpicture/uploadpicture',
     })
   },
-  onLoad:function()
-  {
-    this.getOpenid();
-  },
-  getOpenid()
-  {
-    let that=this;
-    wx.cloud.callFunction({
-      name:'getOpenid',
-      complete:res=>
-      {
-        that.setData({
-          appid:res.result.appId
-        })
-      }
-    })
-  }
 });

@@ -1,9 +1,10 @@
 {
   "pages": [
-    "pages/fillmessege/fillmessege",
-    "pages/talk/talk",
     "pages/classroom/classroom",
     "pages/user/user",
+    "pages/uploadpicture/uploadpicture",
+   "pages/fillmessege/fillmessege",
+    "pages/talk/talk",
     "pages/index/index"
   ],
   "window": {

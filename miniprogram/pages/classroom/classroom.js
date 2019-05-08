@@ -1,5 +1,5 @@
 // pages/classroom/classroom.js
-const app=getApp()
+const app=getApp();
 Page({
 
   /**
@@ -24,8 +24,8 @@ Page({
   onLoad: function (options) {
     var date = new Date();
     var week = this.getweekString(date);
+    this.getOpenid();
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -147,6 +147,14 @@ Page({
   show_messege:function()
   {
     
+  },
+  getOpenid: function () {
+    wx.cloud.callFunction({
+      name: 'getOpenid',
+      complete: res => {
+        app.globalData.appid = res.result.appId;
+      }
+    });
   },
   //得到当前的周次
   getweekString:function(date1)

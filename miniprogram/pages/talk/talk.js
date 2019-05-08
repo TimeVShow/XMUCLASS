@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    flag:false,
   },
 
   /**
@@ -62,5 +62,29 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  create_new_article:function()
+  {
+    var that=this;
+    const db = wx.cloud.database({ env: 'classroom-messege-78b0bb' });
+    const messege = db.collection('user');
+    messege.doc(app.globalData.appid).get({
+      success(res) {
+        that.set({
+          flag:res.is_user
+        })
+    }
+    });
+  },
+  openAlert: function () {
+      wx.showModal({
+        content: '请完善用户信息后再来发帖',
+        showCancel: false,
+        success: function (res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+          }
+        }
+      });
+    }
 })

@@ -1,5 +1,9 @@
 <!--pages/talk/talk.wxml-->
-<view bindtap="">
-  <image class="add_icon" src="images/plus.png">
+<view wx:if="{{flag}}">
+  <image class="add_icon" src="images/plus.png" bindtap="creat_new_article">
+  </image>
+</view>
+<view wx:else>
+  <image class="add_icon" src="images/plus.png" bindtap="openAlert">
   </image>
 </view>

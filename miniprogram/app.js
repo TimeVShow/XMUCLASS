@@ -10,7 +10,9 @@ App({
         env:'classroom-messege-78b0bb'
       })
     }
-
-    this.globalData = {}
+  },
+  globalData:
+  {
+    appid:""
   }
 })

@@ -1,0 +1,33 @@
+<view class="page">
+    <view class="page__bd">
+        <view class="discribtion">
+            为了保证身份的真实性，需要你配合进行学生身份认证，请任选一种证件，然后按照实例图片上传对应的证件图片提交认证，包括校园卡，学生证等。
+        </view>
+        <view class="weui-cells">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <view class="weui-uploader">
+                        <view class="weui-uploader__hd">
+                            <view class="weui-uploader__title">图片材料上传</view>
+                        </view>
+                        <block wx:for="{{files}}" wx:key="*this">
+                          <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+                              <image class="weui-uploader__img" src="{{item}}" mode="aspectFill"/>
+                          </view>
+                        </block>
+                        <view class="load" wx:if="{{files.length<2}}">
+                        <view class="weui-uploader__input-box">
+                            <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                        </view>
+                      </view>
+                  </view>
+                </view>
+            </view>
+        </view>
+        <view class="btn">
+          <button class="weui-btn" type="defalt" bindtap="rechoose">重新选择图片</button>
+          <button class="weui-btn" type="warn" bindtap="openConfirm">返回上一页</button>
+          <button class="weui-btn" type="primary" disabled="{{files.length<2}}" bindtap="openSuccess">提交材料</button>
+        </view>
+    </view>
+</view>
