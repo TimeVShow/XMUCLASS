@@ -1,4 +1,5 @@
 // pages/talk/talk.js
+const app=getApp();
 Page({
 
   /**
@@ -12,7 +13,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
   },
 
   /**
@@ -77,14 +77,33 @@ Page({
     });
   },
   openAlert: function () {
-      wx.showModal({
-        content: '请完善用户信息后再来发帖',
-        showCancel: false,
-        success: function (res) {
-          if (res.confirm) {
-            console.log('用户点击确定')
-          }
+    var is_user;
+    const db = wx.cloud.database({ env: 'classroom-messege-78b0bb' });
+    const messege = db.collection('user');
+    messege.doc(app.globalData.appid).get({
+      success(res)
+      {
+        is_user=res.data.is_user;
+        console.log(is_user);
+        if(is_user==false)
+        {
+          wx.showModal({
+            content: '请完善用户信息后再来发帖',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+              }
+            }
+          });
         }
-      });
+        else
+        {
+          wx.navigateTo({
+            url: '../write_article/write_article',
+          })
+        }
+      }
+    })
     }
 })
