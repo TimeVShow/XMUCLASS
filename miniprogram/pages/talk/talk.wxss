@@ -26,3 +26,34 @@
   bottom:30px;
   right:20px;
 }
+.userinfo-avatar {  
+  overflow:hidden;  
+  display: block;  
+  width: 100rpx;  
+  height: 100rpx;
+  margin: 20rpx;    
+  margin-top: 10rpx;  
+  border-radius: 50%;  
+  border: 2px solid #fff; 
+}  
+.userinfo {  
+  position: relative;  
+  width: 750rpx;  
+  height: 120rpx;  
+  color: #fff;  
+  display: flex;  
+  flex-direction: row;  
+  align-items: left;  
+}
+.article
+{
+  height: 100%;
+  border-color: red;
+}
+.article-content
+{
+  display: flex;
+  word-wrap: break-all;
+  white-space: pre-wrap;
+  margin-left: 20rpx;
+}

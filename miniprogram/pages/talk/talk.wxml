@@ -1,9 +1,16 @@
 <!--pages/talk/talk.wxml-->
-<view wx:if="{{flag}}">
-  <image class="add_icon" src="images/plus.png" bindtap="creat_new_article">
-  </image>
-</view>
-<view wx:else>
   <image class="add_icon" src="images/plus.png" bindtap="openAlert">
   </image>
+<view wx:for="{{article}}">
+  <view class="article">
+    <view class="userinfo ">
+      <block class="avatar-box">
+        <image class="userinfo-avatar" src="{{item.user.avatarUrl}}"></image>
+        <view style='color:black' class="userinfo-nickName">{{item.user.nickName}}</view>
+      </block>
+    </view>
+    <view class="article-content">
+      <view>{{item.content}}</view>
+    </view>
+  </view>
 </view>

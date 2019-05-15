@@ -144,15 +144,33 @@ Page({
     });
     setTimeout(function () { that.setData({ is_select: true }) }, 2000);
   },
-  show_messege:function()
-  {
-    
-  },
   getOpenid: function () {
+    var flag=false;
     wx.cloud.callFunction({
       name: 'getOpenid',
       complete: res => {
         app.globalData.appid = res.result.appId;
+        const db = wx.cloud.database({ env: 'classroom-messege-78b0bb' });
+        const messege = db.collection('user');
+        messege.doc(app.globalData.appid).get({
+          success(res)
+          {
+            flag=true;
+          }
+        });
+        setTimeout(function(){
+          if (!flag) {
+            messege.add({
+              data: {
+                _id: app.globalData.appid,
+                is_user:false,
+                is_shenhe:false,
+                count:0,
+                old:-1
+              }
+            })
+          }
+        },1000);
       }
     });
   },

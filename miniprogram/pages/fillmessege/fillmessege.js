@@ -94,19 +94,6 @@ Page({
         console.log(res)
       }
     })
-    messege.add({
-      data:
-      {
-        _id: app.globalData.appid,
-        name:this.data.name,
-        xueyuan:this.data.xueyuan,
-        studyyear:this.data.studyyear,
-        zhuanye:this.data.zhuanye
-      },
-      success(res) {
-        console.log(res);
-      }
-    });
     wx.redirectTo({
       url: '../uploadpicture/uploadpicture',
     })

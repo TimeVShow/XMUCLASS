@@ -19,39 +19,26 @@ Page({
    */
   onLoad: function (options) {
     var that=this;
+    console.log(app.globalData.appid);
     wx.getUserInfo({
       success:function(res)
       {
+        console.log(res);
         that.data.userInfo=res.userInfo;
         that.setData({
           userInfo:that.data.userInfo
         })
       }
     });
+    console.log(app.globalData)
     const db = wx.cloud.database({ env: 'classroom-messege-78b0bb' });
     const messege = db.collection('user');
     messege.doc(app.globalData.appid).get({
       success(res) {
-        if (typeof (res.data.is_user) == 'undefined') {
-          that.setData({ is_user: false });
-          that.setData({ is_shenhe: false });
-          messege.doc(app.globalData.appid).update({
-            data: {
-              is_user: that.data.is_user,
-              is_shenhe: that.data.is_shenhe,
-              count: 0,
-              old: -1,
-            },
-            success(res) {
-              console.log(ok);
-            }
-          })
-        }
-        else {
+        console.log(res.data);
           that.setData({ is_user: res.data.is_user });
           that.setData({ is_shenhe: res.data.is_shenhe });
         }
-      }
     });
   },
 
@@ -66,15 +53,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log(3);
     var that=this;
     const db = wx.cloud.database({ env: 'classroom-messege-78b0bb' });
     const messege = db.collection('user');
     messege.doc(app.globalData.appid).get({
       success(res) {
-          that.setData({ is_user: res.data.is_user });
-          that.setData({ is_shenhe: res.data.is_shenhe });
-          console.log(that.data.is_shenhe);
+        that.setData({ is_user: res.data.is_user });
+        that.setData({ is_shenhe: res.data.is_shenhe });
       }
     });
   },
@@ -131,31 +116,35 @@ Page({
       success(res) {
         old=res.data.old;
         count=res.data.count;
-        console.log(old);
         if (old == -1) {
-          old = now;
           count = 1;
         }
         else {
           if ((old + 1) % 7 == now) {
             count = count + 1;
-            old = now;
           }
         }
+        console.log(old);
+        console.log(now);
         var a;
-
-        if (that.data.is_user == false && that.data.is_shenhe == true) {
-          a = '您的信息正在审核，审核完成后即可开始签到';
-        }
-        if (that.data.is_user == false && that.data.is_shenhe == false) {
-          a = '您还未完善信息哦，完善信息审核通过后才可使用本功能哦';
-        }
-        if (that.data.is_user == true) {
-          a = '签到成功,当前共连续签到' + String(count) + '天';
-        }
-        if(old==now)
+        if(old== now)
         {
-          a='您今天已经签过到了哦，请明天再来把'
+          a = '您今天已经签过到了哦，请明天再来把'
+        }
+        else
+        {
+          if (that.data.is_user == false && that.data.is_shenhe == true) {
+            a = '您的信息正在审核，审核完成后即可开始签到';
+            old=-1;
+          }
+          else if (that.data.is_user == false && that.data.is_shenhe == false) {
+            a = '您还未完善信息哦，完善信息审核通过后才可使用本功能哦';
+            old=-1;
+          }
+          else if (that.data.is_user == true) {
+            a = '签到成功,当前共连续签到' + String(count) + '天';
+            old=now;
+          }
         }
         messege.doc(app.globalData.appid).update({
           data:
@@ -179,5 +168,9 @@ Page({
           }
         });
       }});
+  },
+  OnGotUserInfo:function(e)
+  {
+    console.log(e.detail);
   }
 })

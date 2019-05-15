@@ -60,10 +60,9 @@ Page({
       env:'classroom-messege-78b0bb'
     });
     var a=app.globalData.appid;
-    console.log(a);
     for(let i=0;i<=1;i++)
     {
-      var b=a+":/"+String(i)+".png";
+      var b="材料/"+a+"/"+String(i)+".png";
       wx.cloud.uploadFile({
         cloudPath: b,
         filePath:this.data.files[i],
