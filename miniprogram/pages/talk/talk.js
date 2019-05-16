@@ -10,7 +10,9 @@ Page({
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
-    time:[]
+    time:[],
+    scrollTop: 0,
+    floorstatus: false
   },
   onPullDownRefresh:function()
   {
@@ -22,7 +24,7 @@ Page({
     var mydate = new Date();
     console.log(mydate);
     var m=that.data.activeIndex;
-    messege.limit(20).where({ tag: String(m) }).orderBy("time", "desc").get({
+    messege.limit(50).where({ tag: String(m) }).orderBy("time", "desc").get({
       success(res) {
         console.log(res);
         for (let i = 0; i < res.data.length; i = i + 1) {
@@ -59,40 +61,39 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that=this;
+    var that = this;
     const db = wx.cloud.database({ env: 'classroom-messege-78b0bb' });
     const messege = db.collection('article');
     var a = [];
     var time;
-    var mydate=new Date();
+    var mydate = new Date();
     console.log(mydate);
-    messege.limit(20).where({ tag:"0" }).orderBy("time", "desc").get({
+    var m = that.data.activeIndex;
+    messege.limit(20).where({ tag: String(m) }).orderBy("time", "desc").get({
       success(res) {
         console.log(res);
         for (let i = 0; i < res.data.length; i = i + 1) {
           var userinfo = res.data[i]['userInfo'];
           var content = res.data[i]['content'];
-          var mongth=res.data[i]['mongth'];
-          var date=res.data[i]['date'];
-          var hour=res.data[i]['hour'];
-          var minutes=res.data[i]['minutes'];
-          if(mongth!=mydate.getMonth()||date!=mydate.getDate())
-          {
-            if(mongth<10)
-            mongth="0"+mongth;
-            if(date<10)
-            data="0"+date;
-            time=mongth+"/"+date;
+          var mongth = res.data[i]['mongth'];
+          var date = res.data[i]['date'];
+          var hour = res.data[i]['hour'];
+          var minutes = res.data[i]['minutes'];
+          if (mongth != mydate.getMonth() || date != mydate.getDate()) {
+            if (mongth < 10)
+              mongth = "0" + mongth;
+            if (date < 10)
+              data = "0" + date;
+            time = mongth + "/" + date;
           }
-          else
-          {
-            if(hour<10)
-            hour="0"+hour;
-            if(minutes<10)
-            minutes="0"+minutes;
-            time="今天"+hour+":"+minutes;
+          else {
+            if (hour < 10)
+              hour = "0" + hour;
+            if (minutes < 10)
+              minutes = "0" + minutes;
+            time = "今天" + hour + ":" + minutes;
           }
-          a[i] = { 'user': userinfo, 'content': content,'time':time};
+          a[i] = { 'user': userinfo, 'content': content, 'time': time };
           console.log(a);
         }
         that.setData({
@@ -110,6 +111,46 @@ Page({
       var that = this;
     that.setData({ is_shenhe: app.globalData.is_shenhe });
     that.setData({ is_user: app.globalData.is_user });
+    var that = this;
+    const db = wx.cloud.database({ env: 'classroom-messege-78b0bb' });
+    const messege = db.collection('article');
+    var a = [];
+    var time;
+    var mydate = new Date();
+    console.log(mydate);
+    var m = that.data.activeIndex;
+    messege.limit(20).where({ tag: String(m) }).orderBy("time", "desc").get({
+      success(res) {
+        console.log(res);
+        for (let i = 0; i < res.data.length; i = i + 1) {
+          var userinfo = res.data[i]['userInfo'];
+          var content = res.data[i]['content'];
+          var mongth = res.data[i]['mongth'];
+          var date = res.data[i]['date'];
+          var hour = res.data[i]['hour'];
+          var minutes = res.data[i]['minutes'];
+          if (mongth != mydate.getMonth() || date != mydate.getDate()) {
+            if (mongth < 10)
+              mongth = "0" + mongth;
+            if (date < 10)
+              data = "0" + date;
+            time = mongth + "/" + date;
+          }
+          else {
+            if (hour < 10)
+              hour = "0" + hour;
+            if (minutes < 10)
+              minutes = "0" + minutes;
+            time = "今天" + hour + ":" + minutes;
+          }
+          a[i] = { 'user': userinfo, 'content': content, 'time': time };
+          console.log(a);
+        }
+        that.setData({
+          article: a
+        });
+      }
+    });
   },
 
   /**
@@ -222,5 +263,21 @@ Page({
         });
       }
     });
-  }
+  },
+  goTop: function (e) {
+    this.setData({
+      scrollTop: 0
+    })
+  },
+  scroll: function (e) {
+    if (e.detail.scrollTop > 600) {
+      this.setData({
+        floorstatus: true
+      });
+    } else {
+      this.setData({
+        floorstatus: false
+      });
+    }
+  },
 })

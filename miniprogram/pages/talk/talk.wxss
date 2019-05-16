@@ -20,11 +20,21 @@
 }
 .add_icon
 {
+  background-size: 200rpx;
   position: fixed;
   width: 84rpx;
   height:84rpx;
   bottom:30px;
   right:20px;
+}
+.go_top
+{
+  position: fixed;
+  width: 84rpx;
+  height:84rpx;
+  bottom:180rpx;
+  right:20px;
+  background-size: 200rpx;
 }
 .userinfo-avatar {  
   overflow:hidden;  
@@ -62,7 +72,7 @@
 }
 .time
 {
-  margin-top:-70rpx;
+  margin-top:-60rpx;
 }
 .name_box
 {

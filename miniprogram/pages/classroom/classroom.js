@@ -186,6 +186,6 @@ Page({
     dayofWeek=dayofWeek==0?7:dayofWeek;
     var num=(Date1-Date2)/1000/3600/24;
     var whichWeek=Math.ceil((num+dayofWeek)/7);
-    this.setData({whichweek:whichWeek});
+    this.setData({whichweek:whichWeek-1});
   }
 })
