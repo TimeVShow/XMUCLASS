@@ -48,6 +48,7 @@ Page({
     const db = wx.cloud.database({ env: 'classroom-messege-78b0bb' });
     const messege = db.collection('user');
     console.log(app.globalData.appid);
+    app.globalData.is_shenhe = true;
     messege.doc(app.globalData.appid).update({
       data: {
         is_shenhe: true,

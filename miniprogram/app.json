@@ -1,12 +1,12 @@
 {
   "pages": [
-    "pages/classroom/classroom",
-    "pages/user/user",
+        "pages/classroom/classroom",
     "pages/uploadpicture/uploadpicture",
-    "pages/fillmessege/fillmessege",
     "pages/talk/talk",
-    "pages/index/index",
-    "pages/write/write"
+    "pages/write/write",
+    "pages/user/user",
+    "pages/fillmessege/fillmessege",
+    "pages/index/index"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

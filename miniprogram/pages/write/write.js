@@ -1,13 +1,17 @@
 const app=getApp();
 Page({
   data: {
-    files: [],
+    array: ['寻物', '失物招领', '招募队友', '其他'],
     content:"",
     userInfo:"",
     count:0,
+    area:"选择标签",
+    tag:-1,
+    can_commit:true
   },
   onLoad:function()
   {
+    console.log(this.data.content.length);
     var that=this;
     wx.getUserInfo({
       success: function (res) {
@@ -30,7 +34,12 @@ Page({
         authorid: app.globalData.appid,
         content: that.data.content,
         time: mydate.getTime(),
-        userInfo:that.data.userInfo
+        userInfo:that.data.userInfo,
+        tag:that.data.tag,
+        mongth:mydate.getMonth(),
+        date:mydate.getDate(),
+        hour:mydate.getHours(),
+        minutes:mydate.getMinutes()
       }
     });
     wx.showToast({
@@ -54,8 +63,36 @@ Page({
       count:e.detail.value.length,
       content:e.detail.value
     })
-    console.log(typeof(e.detail.value));
-    old=e.detail.value;
-    console.log(that.data.content);
+    if (this.data.tag != -1 && this.data.content.length > 0) {
+      this.setData({
+        can_commit: false
+      });
+    }
+    if(this.data.content.length==0)
+    {
+      this.setData({
+        can_commit: true
+      });
+    }
+  },
+  bindPickerChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value);
+    var a=['寻物', '失物招领', '招募队友', '其他'];
+    this.setData({
+      area:a[e.detail.value]
+    });
+    this.setData({
+      tag:e.detail.value
+    });
+    if (this.data.tag != -1 && this.data.content.length > 0) {
+      this.setData({
+        can_commit: false
+      });
+    }
+    if (this.data.content.length == 0) {
+      this.setData({
+        can_commit: true
+      });
+    }
   }
 });

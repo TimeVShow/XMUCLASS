@@ -10,12 +10,8 @@
     </view>
   </view>
 </view>
-<view class="page__bd">
-  <view class="weui-btn-area">
-      <picker bindchange="bindPickerChange" value="{{area}}" range="{{array}}">
-        <button type="default">选择标签</button>
-        </picker>
-  </view>
-</view>
-      <button class="weui-btn" type="primary" bindtap="openToast">发布</button>
+<picker bindchange="bindPickerChange" value="{{area}}" range="{{array}}">
+  <button class="weui-btn" type="primary" plain='true'>{{area}}</button>
+</picker>
+      <button class="weui-btn" type="primary" bindtap="openToast" disabled='{{can_commit}}'>发布</button>
 </view>

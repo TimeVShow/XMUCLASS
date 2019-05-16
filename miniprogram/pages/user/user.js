@@ -19,7 +19,6 @@ Page({
    */
   onLoad: function (options) {
     var that=this;
-    console.log(app.globalData.appid);
     wx.getUserInfo({
       success:function(res)
       {
@@ -30,23 +29,14 @@ Page({
         })
       }
     });
-    console.log(app.globalData)
-    const db = wx.cloud.database({ env: 'classroom-messege-78b0bb' });
-    const messege = db.collection('user');
-    messege.doc(app.globalData.appid).get({
-      success(res) {
-        console.log(res.data);
-          that.setData({ is_user: res.data.is_user });
-          that.setData({ is_shenhe: res.data.is_shenhe });
-        }
-    });
+    that.setData({ is_user: app.globalData.is_user });
+    that.setData({ is_shenhe:app.globalData.is_shenhe});
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
   },
 
   /**
@@ -54,14 +44,8 @@ Page({
    */
   onShow: function () {
     var that=this;
-    const db = wx.cloud.database({ env: 'classroom-messege-78b0bb' });
-    const messege = db.collection('user');
-    messege.doc(app.globalData.appid).get({
-      success(res) {
-        that.setData({ is_user: res.data.is_user });
-        that.setData({ is_shenhe: res.data.is_shenhe });
-      }
-    });
+    that.setData({ is_user: app.globalData.is_user });
+    that.setData({ is_shenhe: app.globalData.is_shenhe });
   },
 
   /**

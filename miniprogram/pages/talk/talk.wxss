@@ -49,6 +49,8 @@
 {
   height: 100%;
   border-color: red;
+  margin-top:20rpx;
+  background-color: white;
 }
 .article-content
 {
@@ -56,4 +58,14 @@
   word-wrap: break-all;
   white-space: pre-wrap;
   margin-left: 20rpx;
+  font-size: 50rpx;
+}
+.time
+{
+  margin-top:-70rpx;
+}
+.name_box
+{
+  display: flex;
+  flex-direction: column;
 }

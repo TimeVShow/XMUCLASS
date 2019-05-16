@@ -10,3 +10,9 @@
   display: flex;
   flex-wrap: wrap;
 }
+.picture_show
+{
+  align-self:center;
+  height:400rpx;
+  width: 400rpx;
+}

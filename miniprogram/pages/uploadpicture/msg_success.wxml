@@ -4,7 +4,7 @@
             <icon type="success" size="93"></icon>
         </view>
         <view class="weui-msg__text-area">
-            <view class="weui-msg__title">提交成功</view>
+            <view class="weui-msg__title">提交成功，管理员会尽快进行审批</view>
         </view>
         <view class="weui-msg__opr-area">
             <view class="weui-btn-area">

@@ -155,6 +155,8 @@ Page({
         messege.doc(app.globalData.appid).get({
           success(res)
           {
+            app.globalData.is_user=res.data.is_user;
+            app.globalData.is_shenhe=res.data.is_shenhe;
             flag=true;
           }
         });
