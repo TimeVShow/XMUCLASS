@@ -37,7 +37,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    const db = wx.cloud.database({ env: 'classroom-messege-78b0bb' });
+    const messege = db.collection('user');
+    messege.doc(app.globalData.appid).get({
+      success(res) {
+        app.globalData.is_user = res.data.is_user;
+        app.globalData.is_shenhe = res.data.is_shenhe;
+      }
+    });
   },
 
   /**
@@ -150,6 +157,7 @@ Page({
       name: 'getOpenid',
       complete: res => {
         app.globalData.appid = res.result.appId;
+        console.log(app.globalData.appid);
         const db = wx.cloud.database({ env: 'classroom-messege-78b0bb' });
         const messege = db.collection('user');
         messege.doc(app.globalData.appid).get({
@@ -169,6 +177,10 @@ Page({
                 is_shenhe:false,
                 count:0,
                 old:-1
+              },
+              success(res)
+              {
+                console.log(res);
               }
             })
           }

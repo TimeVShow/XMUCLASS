@@ -1,6 +1,6 @@
 {
   "pages": [
-        "pages/classroom/classroom",
+    "pages/classroom/classroom",
     "pages/uploadpicture/uploadpicture",
     "pages/talk/talk",
     "pages/write/write",
@@ -12,7 +12,7 @@
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTitleText": "XMUCLASS",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
@@ -39,5 +39,6 @@
         "text": "个人信息"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

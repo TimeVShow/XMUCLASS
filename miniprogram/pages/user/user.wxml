@@ -1,7 +1,8 @@
+
 <view class="userinfo ">
   <block class="avatar-box">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
-    <view style='color:black'>{{userInfo.nickName}}</view>
+    <open-data class="userinfo-avatar" type="userAvatarUrl"></open-data>
+    <open-data  style="color:black" type="userNickName"></open-data>
   </block>
 </view>
 <view class="weui-cells weui-cells_after-title">
