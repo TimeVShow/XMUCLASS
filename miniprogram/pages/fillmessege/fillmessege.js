@@ -87,7 +87,8 @@ Page({
         name: this.data.name,
         xueyuan: this.data.xueyuan,
         studyyear: this.data.studyyear,
-        zhuanye: this.data.zhuanye
+        zhuanye: this.data.zhuanye,
+        userInfo:app.globalData.userInfo
       },
       success(res)
       {

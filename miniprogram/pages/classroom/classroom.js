@@ -17,11 +17,32 @@ Page({
     fs:[],//第5-6节数组
     se:[],//第7-8节数组
     ne:[],//第9-11节数组
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    showTip: true,
+    show:true
     },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function () {
+    var that=this;
+    setTimeout(function () {
+      that.setData({
+        show: false
+      })
+    }, 300);
+    wx.getSetting({
+      success(res)
+      {
+        if(res.authSetting['scope.userInfo'])
+        {
+          app.globalData.showTip=false;
+          that.setData({
+            showTip:false
+          })
+        }
+      }
+    })
     var date = new Date();
     var week = this.getweekString(date);
     this.getOpenid();
@@ -37,6 +58,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var that=this;
+    console.log(that.data.showTip);
     const db = wx.cloud.database({ env: 'classroom-messege-78b0bb' });
     const messege = db.collection('user');
     messege.doc(app.globalData.appid).get({
@@ -156,13 +179,15 @@ Page({
     wx.cloud.callFunction({
       name: 'getOpenid',
       complete: res => {
-        app.globalData.appid = res.result.appId;
-        console.log(app.globalData.appid);
+        console.log(5);
+        console.log(res);
+        app.globalData.appid = res.result.openId;
         const db = wx.cloud.database({ env: 'classroom-messege-78b0bb' });
         const messege = db.collection('user');
         messege.doc(app.globalData.appid).get({
           success(res)
           {
+            app.globalData.userInfo=res.data.userInfo;
             app.globalData.is_user=res.data.is_user;
             app.globalData.is_shenhe=res.data.is_shenhe;
             flag=true;
@@ -199,5 +224,14 @@ Page({
     var num=(Date1-Date2)/1000/3600/24;
     var whichWeek=Math.ceil((num+dayofWeek)/7);
     this.setData({whichweek:whichWeek-1});
+  },
+  getUserInfo: function (e) {
+    var self = this;
+    if (e && e.detail.userInfo) {
+      app.globalData.userInfo=e.detail.userInfo;
+      self.setData({
+        showTip: false
+      });
+    }
   }
 })

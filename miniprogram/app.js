@@ -13,9 +13,12 @@ App({
   },
   globalData:
   {
-    appid:"",
+    oppenid:"",
     is_user:false,
-    is_shenhe:false
+    is_shenhe:false,
+    code:null,
+    userInfo:null,
+    showTip:true
   },
   
 })

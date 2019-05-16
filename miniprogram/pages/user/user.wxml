@@ -1,4 +1,3 @@
-
 <view class="userinfo ">
   <block class="avatar-box">
     <open-data class="userinfo-avatar" type="userAvatarUrl"></open-data>

@@ -13,14 +13,7 @@ Page({
   {
     console.log(this.data.content.length);
     var that=this;
-    wx.getUserInfo({
-      success: function (res) {
-        that.data.userInfo = res.userInfo;
-        that.setData({
-          userInfo: that.data.userInfo
-        })
-      }
-    });
+    that.setData({userInfo:app.globalData.userInfo});
   },
   openToast: function () {
     var that=this;
