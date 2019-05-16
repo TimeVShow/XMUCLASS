@@ -14,49 +14,6 @@ Page({
     scrollTop: 0,
     floorstatus: false
   },
-  onPullDownRefresh:function()
-  {
-    var that = this;
-    const db = wx.cloud.database({ env: 'classroom-messege-78b0bb' });
-    const messege = db.collection('article');
-    var a = [];
-    var time;
-    var mydate = new Date();
-    console.log(mydate);
-    var m=that.data.activeIndex;
-    messege.limit(50).where({ tag: String(m) }).orderBy("time", "desc").get({
-      success(res) {
-        console.log(res);
-        for (let i = 0; i < res.data.length; i = i + 1) {
-          var userinfo = res.data[i]['userInfo'];
-          var content = res.data[i]['content'];
-          var mongth = res.data[i]['mongth'];
-          var date = res.data[i]['date'];
-          var hour = res.data[i]['hour'];
-          var minutes = res.data[i]['minutes'];
-          if (mongth != mydate.getMonth() || date != mydate.getDate()) {
-            if (mongth < 10)
-              mongth = "0" + mongth;
-            if (date < 10)
-              data = "0" + date;
-            time = mongth + "/" + date;
-          }
-          else {
-            if (hour < 10)
-              hour = "0" + hour;
-            if (minutes < 10)
-              minutes = "0" + minutes;
-            time = "今天" + hour + ":" + minutes;
-          }
-          a[i] = { 'user': userinfo, 'content': content, 'time': time };
-          console.log(a);
-        }
-        that.setData({
-          article: a
-        });
-      }
-    });
-  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -66,9 +23,9 @@ Page({
     const messege = db.collection('article');
     var a = [];
     var time;
-    var mydate = new Date();
-    console.log(mydate);
+    var mydate = new Date()
     var m = that.data.activeIndex;
+    console.log(m);
     messege.limit(20).where({ tag: String(m) }).orderBy("time", "desc").get({
       success(res) {
         console.log(res);
