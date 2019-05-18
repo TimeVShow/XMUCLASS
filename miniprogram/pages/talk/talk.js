@@ -6,7 +6,7 @@ Page({
     article:[],
     is_user:false,
     is_shenhe:false,
-    tabs: ["寻物", "失物招领", "招募队友","杂项"],
+    tabs: ["寻物", "失物招领", "招募队友"],
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,

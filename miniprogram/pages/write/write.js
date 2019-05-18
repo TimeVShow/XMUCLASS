@@ -1,7 +1,7 @@
 const app=getApp();
 Page({
   data: {
-    array: ['寻物', '失物招领', '招募队友', '其他'],
+    array: ['寻物', '失物招领', '招募队友'],
     content:"",
     userInfo:"",
     count:0,
