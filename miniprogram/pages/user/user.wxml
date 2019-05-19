@@ -1,2 +1,29 @@
-<!--pages/user/user.wxml-->
-<text>pages/user/user.wxml</text>
+<view class="userinfo ">
+  <block class="avatar-box">
+    <open-data class="userinfo-avatar" type="userAvatarUrl"></open-data>
+    <open-data  style="color:black" type="userNickName"></open-data>
+  </block>
+</view>
+<view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_access" hover-class='hover'>
+        <view class="weui-cell__bd">个人信息</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access" style="font-size: 0">
+            <view wx:if="{{is_user==false&&is_shenhe==false}}">
+            <view style="display: inline-block;vertical-align:middle; font-size: 17px;" bindtap="go">完善个人信息</view>
+            <view class="weui-badge weui-badge_dot" style="margin-left: 5px;margin-right: 5px;"></view>
+            </view>
+            <view wx:elif="{{is_shenhe==true&&is_user==false}}">
+                <view style="display: inline-block;vertical-align:middle; font-size: 17px;">信息正在审核</view>
+            </view>
+            <view wx:elif="{{is_user}}">
+              <view style="display: inline-block;vertical-align:middle; font-size: 17px;">审核通过</view>
+            </view>
+        </view>
+    </view>
+    <view class="weui-cell weui-cell_access">
+        <view class="weui-cell__bd">打卡签到</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access" style="font-size: 0">
+            <view style="display: inline-block;vertical-align:middle; font-size: 17px;" bindtap="openAlert">越自律越自由</view>
+        </view>
+    </view>
+</view>

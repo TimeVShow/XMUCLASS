@@ -1,0 +1,54 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+    <view class="page__hd">
+        <view class="page__title">完善个人信息</view>
+    </view>
+        <view class="weui-cells__title">表单</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">真实姓名</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder="请输入真实姓名" bindblur='nameinput'/>
+                </view>
+            </view>
+            <view style="font-size:30rpx;color:red" >*务必填写真实姓名，与证件不一致将会被直接拒绝</view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">学院</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <picker bindchange="bindPickerChange_xueyuan" value="{{xue_yuan}}" range="{{xue_yuan}}" placeholder="请选择所在学院">
+                        <view class="weui-input">{{xueyuan}}</view>
+                    </picker>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input weui-cell_vcode">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">专业</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder="请输入专业" bindblur='zhuanyeinput'/>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">入学年级</view>
+                </view>
+                <view class="weui-cell__bd">
+                     <picker bindchange="bindPickerChange_year" value="{{study_year}}" range="{{study_year}}">
+                        <view class="weui-input">{{studyyear}}</view>
+                    </picker>
+                </view>
+            </view>
+            <view class="weui-cell weui-cell_input weui-cell_vcode">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">学号</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder="请输入学号" maxlength='14' bindblur='numberinput'/>
+                </view>
+            </view>
+        </view>
+        <button class="weui-btn" type="primary" disabled="{{disable}}" bindtap="nextstep">下一步</button>
+      </view>

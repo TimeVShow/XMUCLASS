@@ -1,5 +1,5 @@
 // pages/classroom/classroom.js
-const app=getApp()
+const app=getApp();
 Page({
 
   /**
@@ -7,23 +7,46 @@ Page({
    */
   data: {
     area:[{"id":0,"text":"海韵教学楼","position":"haiyunjiaoxuelou"},{"id":1,"text":"学生公寓","position":"xueshenggongyu"}],
+    //这里添加下拉菜单的地区选择，格式如上
     time: ["第1-2节", "第3-4节", "第5-6节", "第7-8节", "第9-11节"],
     whichweek:0,
-    start_time:"2019/2/16",
-    ot:[],
-    tf:[],
-    fs:[],
-    se:[],
-    ne:[]
+    is_select:false,
+    start_time:"2019/2/16",//设定一学年的开始日期
+    ot:[],//第1——2节数组
+    tf:[],//第3-4节数组
+    fs:[],//第5-6节数组
+    se:[],//第7-8节数组
+    ne:[],//第9-11节数组
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    showTip: true,
+    show:true
     },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function () {
+    var that=this;
+    setTimeout(function () {
+      that.setData({
+        show: false
+      })
+    }, 300);
+    wx.getSetting({
+      success(res)
+      {
+        if(res.authSetting['scope.userInfo'])
+        {
+          app.globalData.showTip=false;
+          that.setData({
+            showTip:false
+          })
+        }
+      }
+    })
     var date = new Date();
     var week = this.getweekString(date);
+    this.getOpenid();
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -35,7 +58,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that=this;
+    console.log(that.data.showTip);
+    const db = wx.cloud.database({ env: 'classroom-messege-78b0bb' });
+    const messege = db.collection('user');
+    messege.doc(app.globalData.appid).get({
+      success(res) {
+        app.globalData.is_user = res.data.is_user;
+        app.globalData.is_shenhe = res.data.is_shenhe;
+      }
+    });
   },
 
   /**
@@ -74,15 +106,11 @@ Page({
   },
   //得到下拉列表的返回值，并开始进行处理
   getDate: function (e) {
-    var b=[];
-    this.setData({ot:b});
-    this.setData({tf:b});
-    var a=e.detail["id"];
-    var area=this.data.area[a]["position"];
-    var day=this.today();
-    console.log(day);
-    var date=new Date();   
-    var week=this.getweekString(date);
+    var a=e.detail["id"];//得到选择位置的id
+    var area=this.data.area[a]["position"];//得到选择位置的地区
+    var day=this.today();//得到今天是星期几
+    var date=new Date();  
+    var week=this.getweekString(date);//得到当前是第几学周
     this.work(this.data.whichweek,area,day);
   },
   //得到当前是星期几
@@ -92,7 +120,7 @@ Page({
     a = a[0] + a[1] + a[2];
     return a;
   },
-  work:function(week,area,day)
+  work:function(week,area,day)//主函数
   {
     const name=["ot","tf","fs","se","ne"];
     const cl=["1_2","3_4","5_6","7_8","9_11"];
@@ -100,13 +128,15 @@ Page({
     const position = db.collection(area);
     var that=this;
     var b=[];
-    for(let i=0;i<5;i++)
+    that.setData({is_select:false});
+    for(let i=0;i<5;i++)//进行初始化
     {
       that.setData(
         {
             [name[i]]:b          
         });      
     }
+    //得到数据库数据
     db.collection(area).where({_id:day}).get({
       success(res)
       {
@@ -115,8 +145,7 @@ Page({
         var k=0;
         for(let k=0;k<len;k=k+1)
         {
-          var b = [];
-          console.log(k);
+          var b=[];
           var count=0;
           for(i=0;i<len;i=i+1)
           {
@@ -135,18 +164,54 @@ Page({
               count = count + 1;
             }
           }
-          console.log(b);
           if(count!=0)
-          that.setData({[name[k]]:b});
-          else
-          that.setData({[name[k][0]]:"当前无可用自习教室"});
+          {
+            console.log(b);
+            that.setData({[name[k]]:b});
+          }
         }
       }
     });
+    setTimeout(function () { that.setData({ is_select: true }) }, 2000);
   },
-  show_messege:function()
-  {
-    
+  getOpenid: function () {
+    var flag=false;
+    wx.cloud.callFunction({
+      name: 'getOpenid',
+      complete: res => {
+        console.log(5);
+        console.log(res);
+        app.globalData.appid = res.result.openId;
+        const db = wx.cloud.database({ env: 'classroom-messege-78b0bb' });
+        const messege = db.collection('user');
+        messege.doc(app.globalData.appid).get({
+          success(res)
+          {
+            app.globalData.userInfo=res.data.userInfo;
+            app.globalData.is_user=res.data.is_user;
+            app.globalData.is_shenhe=res.data.is_shenhe;
+            flag=true;
+          }
+        });
+        setTimeout(function(){
+          if (!flag) {
+            messege.add({
+              data: {
+                _id: app.globalData.appid,
+                is_user:false,
+                is_shenhe:false,
+                count:0,
+                old:-1
+              },
+              success(res)
+              {
+                console.log(res);
+              }
+            })
+          }
+        },1000);
+      }
+    });
   },
   //得到当前的周次
   getweekString:function(date1)
@@ -158,6 +223,15 @@ Page({
     dayofWeek=dayofWeek==0?7:dayofWeek;
     var num=(Date1-Date2)/1000/3600/24;
     var whichWeek=Math.ceil((num+dayofWeek)/7);
-    this.setData({whichweek:whichWeek});
+    this.setData({whichweek:whichWeek-1});
+  },
+  getUserInfo: function (e) {
+    var self = this;
+    if (e && e.detail.userInfo) {
+      app.globalData.userInfo=e.detail.userInfo;
+      self.setData({
+        showTip: false
+      });
+    }
   }
 })

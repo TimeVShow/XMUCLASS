@@ -1,5 +1,39 @@
 <!--pages/talk/talk.wxml-->
-<view bindtap="">
-  <image class="add_icon" src="images/plus.png">
-  </image>
+<scroll-view scroll-y="true" bindscroll="scroll" scroll-top="{{scrollTop}}" style="position:absolute; top:0; left:0; right:0; bottom:0;">
+<image class="add_icon" src="images/plus.png" bindtap="openAlert"></image>
+<view  class="top_box" bindtap="goTop" wx:if="{{ floorstatus }}">
+    <image class="go_top" src="up-circle.png"></image>
 </view>
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-tab">
+            <view class="weui-navbar">
+                <block wx:for="{{tabs}}" wx:key="*this">
+                    <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+                        <view class="weui-navbar__title">{{item}}</view>
+                    </view>
+                </block>
+                <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+            </view>
+      </view>
+    </view>
+    <view class="page_bd">
+            <view wx:for="{{article}}">
+              <view class="article">
+                  <view class="userinfo ">
+                    <block class="avatar-box">
+                      <image class="userinfo-avatar" src="{{item.user.avatarUrl}}"></image>
+                      <view class="name_box">
+                      <view style='color:black' class="userinfo-nickName">{{item.user.nickName}}</view>2q
+                      <view class="time" style='color:black'>{{item.time}}</view>
+                      </view>
+                    </block>
+                  </view>
+                  <view class="article-content">
+                    <view>{{item.content}}</view>
+                  </view>
+                </view>
+              </view>
+    </view>
+</view>
+</scroll-view>

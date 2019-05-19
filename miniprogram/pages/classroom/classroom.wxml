@@ -1,7 +1,27 @@
 <!--pages/classroom/classroom.wxml-->
+<!-- index.wxml -->
+<view hidden='{{show}}'>
+<view class="modal-box" hidden='{{!showTip}}'>
+  <view class="modal-content">
+    <view class="content-title">提示信息</view>
+    <view class="content-text">
+      绑定微信号需要收集您的部分用户信息，否则将无法绑定成功，请点击“确认”后按操作提示授权。
+    </view>
+  </view>
+  <view class="modal-btns">
+    <view class="weui-flex">
+      <view class="weui-flex__item">
+        <button class="dialog-btn cancel" bindtap="exit">取消</button>
+      </view>
+      <view class="weui-flex__item">
+        <button class="dialog-btn confirm" open-type="getUserInfo" bindgetuserinfo="getUserInfo">确认</button>
+      </view>
+    </view>
+  </view>
+</view>
+<view hidden='{{showTip}}'>
 <view class="head">当前周次为:第{{whichweek}}周</view>
 <view style="color:red;font-size:30rpx">注*:自习室具体使用情况可能会有所变动请以现场情况为准</view>
-
 <Select prop-array='{{area}}' bind:myget='getDate'></Select>
 
 <button class="btn1">"第1-2节"</button>
@@ -9,13 +29,15 @@
 <block wx:for="{{ot}}" class="mes">
 <view class='btn2'>{{item}}</view>
 </block>
+<view wx:if="{{ot.length<1&&is_select}}">当前无教室可用</view>
 </view>
 
 <button class="btn1">"第3-4节"</button>
 <view class="room">
 <block wx:for="{{tf}}" class="mes">
-<view class="btn2">{{item}}</view>
+  <view class="btn2">{{item}}</view>
 </block>
+<view wx:if="{{tf.length<1&&is_select}}">当前无教室可用</view>
 </view>
 
 <button class="btn1">"第5-6节"</button>
@@ -23,6 +45,7 @@
 <block wx:for="{{fs}}" class="mes">
 <view class='btn2'>{{item}}</view>
 </block>
+<view wx:if="{{fs.length<1&&is_select}}">当前无教室可用</view>
 </view>
 
 <button class="btn1">"第7-8节"</button>
@@ -30,10 +53,15 @@
 <block wx:for="{{se}}" class="mes">
 <view class='btn2'>{{item}}</view>
 </block>
+<view wx:if="{{se.length<1&&is_select}}">当前无教室可用</view>
 </view>
+
 <button class="btn1">"第9-11节"</button>
 <view class='room'>
 <block wx:for="{{ne}}" class="mes">
 <view class='btn2'>{{item}}</view>
 </block>
+<view wx:if="{{ne.length<1&&is_select}}">当前无教室可用</view>
+</view>
+</view>
 </view>
