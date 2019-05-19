@@ -5,7 +5,7 @@
   <view class="weui-cell">
     <view class="weui-cell__bd">
       <textarea class="weui-textarea" placeholder="说点什么吧" style="height: 7.3em" bindinput="bindinput"/>
-        <view class="weui-textarea-counter">{{count}}/140
+        <view class="weui-textarea-counter">{{count}}/200
         </view>
     </view>
   </view>
