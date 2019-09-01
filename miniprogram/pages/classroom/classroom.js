@@ -1,7 +1,6 @@
 // pages/classroom/classroom.js
 const app=getApp();
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -11,41 +10,17 @@ Page({
     time: ["第1-2节", "第3-4节", "第5-6节", "第7-8节", "第9-11节"],
     whichweek:0,
     is_select:false,
-    start_time:"2019/2/16",//设定一学年的开始日期
+    start_time:"2019/9/16",//设定一学年的开始日期
     ot:[],//第1——2节数组
     tf:[],//第3-4节数组
     fs:[],//第5-6节数组
     se:[],//第7-8节数组
     ne:[],//第9-11节数组
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    showTip: true,
-    show:true
     },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    var that=this;
-    setTimeout(function () {
-      that.setData({
-        show: false
-      })
-    }, 300);
-    wx.getSetting({
-      success(res)
-      {
-        if(res.authSetting['scope.userInfo'])
-        {
-          app.globalData.showTip=false;
-          that.setData({
-            showTip:false
-          })
-        }
-      }
-    })
-    var date = new Date();
-    var week = this.getweekString(date);
-    this.getOpenid();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -58,16 +33,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that=this;
-    console.log(that.data.showTip);
-    const db = wx.cloud.database({ env: 'classroom-messege-78b0bb' });
-    const messege = db.collection('user');
-    messege.doc(app.globalData.appid).get({
-      success(res) {
-        app.globalData.is_user = res.data.is_user;
-        app.globalData.is_shenhe = res.data.is_shenhe;
-      }
-    });
+    var that = this
+    var date = new Date(); 
+    var week = that.getweekString(date);//得到当前是第几学周
+    that.setData({whichweek:week})
   },
 
   /**
@@ -123,11 +92,17 @@ Page({
   work:function(week,area,day)//主函数
   {
     const name=["ot","tf","fs","se","ne"];
-    const cl=["1_2","3_4","5_6","7_8","9_11"];
+    const cl=["1-2","3-4","5-6","7-8","9-11"];
     const db = wx.cloud.database({ env: 'classroom-messege-78b0bb' });
     const position = db.collection(area);
     var that=this;
+    var ot1=[];
+    var tf1=[];
+    var fs1=[];
+    var se1=[];
+    var ne1=[];
     var b=[];
+    var room;
     that.setData({is_select:false});
     for(let i=0;i<5;i++)//进行初始化
     {
@@ -140,78 +115,52 @@ Page({
     db.collection(area).where({_id:day}).get({
       success(res)
       {
-        var len=res.data[0]["1_2"].length;
-        var i=0;
-        var k=0;
-        for(let k=0;k<len;k=k+1)
-        {
-          var b=[];
-          var count=0;
-          for(i=0;i<len;i=i+1)
-          {
-            var fl = res.data[0][cl[k]][i]["flag"];
-            for (let j = 0; j < res.data[0][cl[k]][i]["special"].length;j=j+1)
-            {
-              if (week == res.data[0][cl[k]][i]["special"][j])
-              {
-                fl = !fl;
-                break;
+        console.log("OK")
+        for(var i in res['data'][0]){
+          room = res['data'][0][i]
+          if (room.length == 5){
+            for(let j = 0;j < 5;j++){
+               var flag = false
+               console.log(room[j]['flag'])
+              if (room[j]['flag'] == true) {
+                flag = true
+              }
+              else {
+                for (let k = 0; k < room[j]['special'].length; k++) {
+                  if (week == room[j]['special'][k]) {
+                    flag = true
+                  }
+                }
+              }
+              if(flag){
+                if(j==0){
+                  ot1.push(i)
+                }
+                if(j==1){
+                  tf1.push(i)
+                }
+                if(j==2){
+                  fs1.push(i)
+                }
+                if(j==3){
+                  se1.push(i)
+                }
+                if(j==4){
+                  ne1.push(i)
+                }
               }
             }
-            if(fl)
-            {
-              b[count]=res.data[0][cl[k]][i]["room"];
-              count = count + 1;
-            }
-          }
-          if(count!=0)
-          {
-            console.log(b);
-            that.setData({[name[k]]:b});
           }
         }
+        that.setData({ot:ot1});
+        that.setData({tf:tf1});
+        that.setData({fs:fs1});
+        that.setData({se:se1});
+        that.setData({ne:ne1});
+        that.setData({is_select:true})
       }
     });
     setTimeout(function () { that.setData({ is_select: true }) }, 2000);
-  },
-  getOpenid: function () {
-    var flag=false;
-    wx.cloud.callFunction({
-      name: 'getOpenid',
-      complete: res => {
-        console.log(5);
-        console.log(res);
-        app.globalData.appid = res.result.openId;
-        const db = wx.cloud.database({ env: 'classroom-messege-78b0bb' });
-        const messege = db.collection('user');
-        messege.doc(app.globalData.appid).get({
-          success(res)
-          {
-            app.globalData.userInfo=res.data.userInfo;
-            app.globalData.is_user=res.data.is_user;
-            app.globalData.is_shenhe=res.data.is_shenhe;
-            flag=true;
-          }
-        });
-        setTimeout(function(){
-          if (!flag) {
-            messege.add({
-              data: {
-                _id: app.globalData.appid,
-                is_user:false,
-                is_shenhe:false,
-                count:0,
-                old:-1
-              },
-              success(res)
-              {
-                console.log(res);
-              }
-            })
-          }
-        },1000);
-      }
-    });
   },
   //得到当前的周次
   getweekString:function(date1)
@@ -224,14 +173,5 @@ Page({
     var num=(Date1-Date2)/1000/3600/24;
     var whichWeek=Math.ceil((num+dayofWeek)/7);
     this.setData({whichweek:whichWeek-1});
-  },
-  getUserInfo: function (e) {
-    var self = this;
-    if (e && e.detail.userInfo) {
-      app.globalData.userInfo=e.detail.userInfo;
-      self.setData({
-        showTip: false
-      });
-    }
   }
 })

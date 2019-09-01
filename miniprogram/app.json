@@ -1,11 +1,6 @@
 {
   "pages": [
     "pages/classroom/classroom",
-    "pages/uploadpicture/uploadpicture",
-    "pages/talk/talk",
-    "pages/write/write",
-    "pages/user/user",
-    "pages/fillmessege/fillmessege",
     "pages/index/index"
   ],
   "window": {
@@ -14,31 +9,6 @@
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "XMUCLASS",
     "navigationBarTextStyle": "black"
-  },
-  "tabBar": {
-    "color": "#a9b7b7",
-    "borderStyle": "white",
-    "selectedColor": "#11cd6e",
-    "list": [
-      {
-        "selectedIconPath": "images/book.png",
-        "iconPath": "images/book.png",
-        "pagePath": "pages/classroom/classroom",
-        "text": "可用自习教室"
-      },
-      {
-        "selectedIconPath": "images/explore.png",
-        "iconPath": "images/explore.png",
-        "pagePath": "pages/talk/talk",
-        "text": "探索"
-      },
-      {
-        "selectedIconPath": "images/myine.png",
-        "iconPath": "images/myine.png",
-        "pagePath": "pages/user/user",
-        "text": "个人信息"
-      }
-    ]
   },
   "sitemapLocation": "sitemap.json"
 }

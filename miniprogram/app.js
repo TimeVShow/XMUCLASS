@@ -11,6 +11,12 @@ App({
     }
     
   },
+  wx:wx.setEnableDebug({
+    enableDebug: true,
+    success: function(res) {},
+    fail: function(res) {},
+    complete: function(res) {},
+  }),
   globalData:
   {
     oppenid:"",
