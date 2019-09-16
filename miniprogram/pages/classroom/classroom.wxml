@@ -10,7 +10,7 @@
 <block wx:for="{{ot}}" class="mes">
 <view class='btn2'>{{item}}</view>
 </block>
-<view wx:if="{{on_holiday}}">所有教室均可用</view>
+<view wx:if="{{on_holiday&&ot.length<1}}">所有教室均可用</view>
 <view wx:if="{{ot.length<1&&is_select}}">当前无教室可用</view>
 </view>
 
@@ -19,7 +19,7 @@
 <block wx:for="{{tf}}" class="mes">
   <view class="btn2">{{item}}</view>
 </block>
-<view wx:if="{{on_holiday}}">所有教室均可用</view>
+<view wx:if="{{on_holiday&&tf.lengh<1}}">所有教室均可用</view>
 <view wx:if="{{tf.length<1&&is_select}}">当前无教室可用</view>
 </view>
 
@@ -28,7 +28,7 @@
 <block wx:for="{{fs}}" class="mes">
 <view class='btn2'>{{item}}</view>
 </block>
-<view wx:if="{{on_holiday}}">所有教室均可用</view>
+<view wx:if="{{on_holiday&&fs.length<1}}">所有教室均可用</view>
 <view wx:if="{{fs.length<1&&is_select}}">当前无教室可用</view>
 </view>
 
@@ -37,7 +37,7 @@
 <block wx:for="{{se}}" class="mes">
 <view class='btn2'>{{item}}</view>
 </block>
-<view wx:if="{{on_holiday}}">所有教室均可用</view>
+<view wx:if="{{on_holiday&&se.lengh<1}}">所有教室均可用</view>
 <view wx:if="{{se.length<1&&is_select}}">当前无教室可用</view>
 </view>
 
@@ -46,7 +46,7 @@
 <block wx:for="{{ne}}" class="mes">
 <view class='btn2'>{{item}}</view>
 </block>
-<view wx:if="{{on_holiday}}">所有教室均可用</view>
+<view wx:if="{{on_holiday&&ne.length<1}}">所有教室均可用</view>
 <view wx:if="{{ne.length<1&&is_select}}">当前无教室可用</view>
 </view>
 </view>
