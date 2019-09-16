@@ -5,11 +5,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    area:[{"id":0,"text":"海韵教学楼","position":"haiyunjiaoxuelou"},{"id":1,"text":"学生公寓","position":"xueshenggongyu"}],
+    area: [{ "id": 0, "text": "南强二", "position": "nanqianger" }, { "id": 1, "text": "学生公寓", "position": "xueshenggongyu" }, { "id": 2, "text": "海韵教学楼", "position": "haiyunjiaoxuelou" }],
     //这里添加下拉菜单的地区选择，格式如上
     time: ["第1-2节", "第3-4节", "第5-6节", "第7-8节", "第9-11节"],
     whichweek:0,
     is_select:false,
+    on_holiday:false,
     start_time:"2019/9/16",//设定一学年的开始日期
     ot:[],//第1——2节数组
     tf:[],//第3-4节数组
@@ -33,10 +34,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    console.log(this.data.on_holiday);
     var that = this
     var date = new Date(); 
-    var week = that.getweekString(date);//得到当前是第几学周
-    that.setData({whichweek:week})
+    that.getweekString(date);//得到当前是第几学周
   },
 
   /**
@@ -77,10 +78,15 @@ Page({
   getDate: function (e) {
     var a=e.detail["id"];//得到选择位置的id
     var area=this.data.area[a]["position"];//得到选择位置的地区
+    console.log(area);
     var day=this.today();//得到今天是星期几
     var date=new Date();  
-    var week=this.getweekString(date);//得到当前是第几学周
-    this.work(this.data.whichweek,area,day);
+    this.getweekString(date);//得到当前是第几学周
+    if(day == "Sat" || day =="Sun"){
+      this.setData({on_holiday:true});
+    }
+    else
+      this.work(this.data.whichweek,area,day);
   },
   //得到当前是星期几
   today:function()
@@ -91,10 +97,13 @@ Page({
   },
   work:function(week,area,day)//主函数
   {
+
     const name=["ot","tf","fs","se","ne"];
     const cl=["1-2","3-4","5-6","7-8","9-11"];
+    console.log(area);
     const db = wx.cloud.database({ env: 'classroom-messege-78b0bb' });
     const position = db.collection(area);
+    console.log(position);
     var that=this;
     var ot1=[];
     var tf1=[];
@@ -115,6 +124,7 @@ Page({
     db.collection(area).where({_id:day}).get({
       success(res)
       {
+        console.log(res.data);
         console.log("OK")
         for(var i in res['data'][0]){
           room = res['data'][0][i]
@@ -172,6 +182,7 @@ Page({
     dayofWeek=dayofWeek==0?7:dayofWeek;
     var num=(Date1-Date2)/1000/3600/24;
     var whichWeek=Math.ceil((num+dayofWeek)/7);
-    this.setData({whichweek:whichWeek-1});
+    var that = this;
+    that.setData({whichweek:whichWeek});
   }
 })

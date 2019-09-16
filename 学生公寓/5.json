@@ -1,0 +1,216 @@
+{
+    "_id": "Fri",
+    "105": [
+        {
+            "flag": "false",
+            "time": "1-2",
+            "special": []
+        },
+        {
+            "flag": "false",
+            "time": "3-4",
+            "special": [
+                1,
+                2,
+                3
+            ]
+        },
+        {
+            "flag": "true",
+            "time": "5-6",
+            "special": []
+        },
+        {
+            "flag": "true",
+            "time": "7-8",
+            "special": []
+        },
+        {
+            "flag": "true",
+            "time": "9-11",
+            "special": []
+        }
+    ],
+    "201": [
+        {
+            "flag": "false",
+            "time": "1-2",
+            "special": [
+                1,
+                2,
+                3
+            ]
+        },
+        {
+            "flag": "false",
+            "time": "3-4",
+            "special": [
+                2,
+                4,
+                6,
+                8,
+                10,
+                12,
+                14
+            ]
+        },
+        {
+            "flag": "false",
+            "time": "5-6",
+            "special": []
+        },
+        {
+            "flag": "true",
+            "time": "7-8",
+            "special": []
+        },
+        {
+            "flag": "true",
+            "time": "9-11",
+            "special": []
+        }
+    ],
+    "204": [
+        {
+            "flag": "false",
+            "time": "1-2",
+            "special": []
+        },
+        {
+            "flag": "true",
+            "time": "3-4",
+            "special": []
+        },
+        {
+            "flag": "true",
+            "time": "5-6",
+            "special": []
+        },
+        {
+            "flag": "true",
+            "time": "7-8",
+            "special": []
+        },
+        {
+            "flag": "true",
+            "time": "9-11",
+            "special": []
+        }
+    ],
+    "205": [
+        {
+            "flag": "false",
+            "time": "1-2",
+            "special": [
+                1,
+                2,
+                3
+            ]
+        },
+        {
+            "flag": "false",
+            "time": "3-4",
+            "special": [
+                1,
+                2,
+                3
+            ]
+        },
+        {
+            "flag": "true",
+            "time": "5-6",
+            "special": []
+        },
+        {
+            "flag": "false",
+            "time": "7-8",
+            "special": []
+        },
+        {
+            "flag": "true",
+            "time": "9-11",
+            "special": []
+        }
+    ],
+    "206": [
+        {
+            "flag": "false",
+            "time": "1-2",
+            "special": []
+        },
+        {
+            "flag": "true",
+            "time": "3-4",
+            "special": []
+        },
+        {
+            "flag": "true",
+            "time": "5-6",
+            "special": []
+        },
+        {
+            "flag": "false",
+            "time": "7-8",
+            "special": []
+        },
+        {
+            "flag": "true",
+            "time": "9-11",
+            "special": []
+        }
+    ],
+    "305": [
+        {
+            "flag": "false",
+            "time": "1-2",
+            "special": []
+        },
+        {
+            "flag": "true",
+            "time": "3-4",
+            "special": []
+        },
+        {
+            "flag": "true",
+            "time": "5-6",
+            "special": []
+        },
+        {
+            "flag": "true",
+            "time": "7-8",
+            "special": []
+        },
+        {
+            "flag": "true",
+            "time": "9-11",
+            "special": []
+        }
+    ],
+    "306": [
+        {
+            "flag": "false",
+            "time": "1-2",
+            "special": []
+        },
+        {
+            "flag": "false",
+            "time": "3-4",
+            "special": []
+        },
+        {
+            "flag": "true",
+            "time": "5-6",
+            "special": []
+        },
+        {
+            "flag": "true",
+            "time": "7-8",
+            "special": []
+        },
+        {
+            "flag": "true",
+            "time": "9-11",
+            "special": []
+        }
+    ]
+}

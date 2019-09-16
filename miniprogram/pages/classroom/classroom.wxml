@@ -1,10 +1,7 @@
 <!--pages/classroom/classroom.wxml-->
 <!-- index.wxml -->
 <view>
-<!--
 <view class="head">当前周次为:第{{whichweek}}周</view>
--->
-<view class="head">还没开学^_^</view>
 <view style="color:red;font-size:30rpx">注*:自习室具体使用情况可能会有所变动请以现场情况为准</view>
 <Select prop-array='{{area}}' bind:myget='getDate'></Select>
 
@@ -13,6 +10,7 @@
 <block wx:for="{{ot}}" class="mes">
 <view class='btn2'>{{item}}</view>
 </block>
+<view wx:if="{{on_holiday}}">所有教室均可用</view>
 <view wx:if="{{ot.length<1&&is_select}}">当前无教室可用</view>
 </view>
 
@@ -21,6 +19,7 @@
 <block wx:for="{{tf}}" class="mes">
   <view class="btn2">{{item}}</view>
 </block>
+<view wx:if="{{on_holiday}}">所有教室均可用</view>
 <view wx:if="{{tf.length<1&&is_select}}">当前无教室可用</view>
 </view>
 
@@ -29,6 +28,7 @@
 <block wx:for="{{fs}}" class="mes">
 <view class='btn2'>{{item}}</view>
 </block>
+<view wx:if="{{on_holiday}}">所有教室均可用</view>
 <view wx:if="{{fs.length<1&&is_select}}">当前无教室可用</view>
 </view>
 
@@ -37,6 +37,7 @@
 <block wx:for="{{se}}" class="mes">
 <view class='btn2'>{{item}}</view>
 </block>
+<view wx:if="{{on_holiday}}">所有教室均可用</view>
 <view wx:if="{{se.length<1&&is_select}}">当前无教室可用</view>
 </view>
 
@@ -45,6 +46,7 @@
 <block wx:for="{{ne}}" class="mes">
 <view class='btn2'>{{item}}</view>
 </block>
+<view wx:if="{{on_holiday}}">所有教室均可用</view>
 <view wx:if="{{ne.length<1&&is_select}}">当前无教室可用</view>
 </view>
 </view>
